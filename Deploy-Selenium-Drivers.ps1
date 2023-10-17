@@ -1,24 +1,34 @@
 ### Main directory
+Set-Location $home
 $temp = "$home\Documents\Selenium-Temp\"
-$path = "$home\Documents\Selenium\"
-if ($(Test-Path $temp) -like "False") {
+if (Test-Path $temp) {
+    Remove-Item $temp -Force -Recurse
+    New-Item -ItemType Directory -Path $temp
+} else {
     New-Item -ItemType Directory -Path $temp
 }
+$path = "$home\Documents\Selenium\"
+if (Test-Path $path) {
+    Remove-Item $path -Force -Recurse
+}
 
-### Download Nuget
+### Download latest Nuget
 $nuget = "$temp\nuget.exe"
 Invoke-RestMethod https://dist.nuget.org/win-x86-commandline/latest/nuget.exe -OutFile $nuget
 
 ### Download Selenium WebDriver
 Set-Location $temp
-.$nuget install Selenium.WebDriver
+Invoke-Expression "$nuget install Selenium.WebDriver" > $null
 $WebDriver = $(Get-ChildItem "$temp\Selenium.WebDriver.*\lib\*\*.dll").FullName
-$TestSelenium = Test-Path $WebDriver
-Write-Host "Install Selenium Driver: $TestSelenium" -ForegroundColor Yellow
+if (Test-Path $WebDriver) {
+    Write-Host "Install Selenium WebDriver: True" -ForegroundColor Green
+} else {
+    Write-Host "Install Selenium WebDriver: False" -ForegroundColor Red
+}
 
-### Get latest version
+### Get latest version ChromeDriver
 $LatestChromeDriver = Invoke-RestMethod https://chromedriver.storage.googleapis.com/LATEST_RELEASE
-Write-Host "Latest Chrome Driver Version: $LatestChromeDriver" -ForegroundColor Green
+Write-Host "Latest Version ChromeDriver: $LatestChromeDriver" -ForegroundColor Green
 
 ### Download Latest ChromeDriver
 $ChromeDriverZip = "$temp\ChromeDriver-$LatestChromeDriver.zip"
@@ -26,22 +36,27 @@ Invoke-RestMethod "https://chromedriver.storage.googleapis.com/$LatestChromeDriv
 $ChromeDriverPath = $ChromeDriverZip -replace ".zip"
 Expand-Archive -Path $ChromeDriverZip -DestinationPath $ChromeDriverPath
 $ChromeDriver = (Get-ChildItem "$ChromeDriverPath\*.exe").FullName
-$TestChrome = Test-Path $ChromeDriver
-Write-Host "Install Latest Chrome Driver: $TestChrome (Version: $LatestChromeDriver)" -ForegroundColor Yellow
+if  (Test-Path $ChromeDriver) {
+    Write-Host "Install Latest ChromeDriver: True" -ForegroundColor Green
+} else {
+    Write-Host "Install Latest ChromeDriver: False" -ForegroundColor Red
+}
 
 ### Download Chromium
 $url = (Invoke-RestMethod https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json
 ).versions.downloads.chrome | Where-Object platform -like win32 | Where-Object url -match $LatestChromeDriver
-$ChromiumZip = "$temp\Chromium-$LatestChromeDriver.zip"
-$ChromiumPath = "$temp\Chromium"
-Invoke-RestMethod -Uri ($url.url) -OutFile $ChromiumZip
-Expand-Archive -Path $ChromiumZip -DestinationPath $Path
-
-# Copy main directrory
-if (($TestSelenium -like "True") -and ($TestChrome -like "True")) {
-    Copy-Item $WebDriver $path
-    Copy-Item $ChromeDriver $path
-    Write-Host "Install Succesfull" -ForegroundColor Green
+if ($url) {
+    $ChromiumZip = "$temp\Chromium-$LatestChromeDriver.zip"
+    Invoke-RestMethod -Uri ($url.url) -OutFile $ChromiumZip
+    Expand-Archive -Path $ChromiumZip -DestinationPath $Path
+    Write-Host "Install Latest Chromium: True" -ForegroundColor Green
 } else {
-    Write-Host "Install Failed" -ForegroundColor Red
+    Write-Host "Not found chromium build for latest chrome driver: $LatestChromeDriver" -ForegroundColor Red
 }
+
+# Copy main directrory and clear temp
+Copy-Item $WebDriver $path
+Copy-Item $ChromeDriver $path
+Set-Location $home
+Remove-Item $temp -Force -Recurse
+Write-Host "Installation complete" -ForegroundColor Green
