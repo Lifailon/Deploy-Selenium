@@ -9,7 +9,7 @@ Deploy drivers selenium and chrome via PowerShell.
 Example of connecting a set of drivers for your script PowerShell:
 
 ```PowerShell
-$path = "C:\Users\Lifailon\Documents\Selenium"
+$path = "$home\Documents\Selenium\"
 $ChromeDriverPath = "$path\chromedriver.exe"
 $WebDriver = "$path\WebDriver.dll"
 $Chromium = (Get-ChildItem $path -Recurse | Where-Object Name -like chrome.exe).FullName
