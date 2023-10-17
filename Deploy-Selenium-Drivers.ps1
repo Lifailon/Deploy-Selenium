@@ -37,7 +37,7 @@ $ChromiumPath = "$temp\Chromium"
 Invoke-RestMethod -Uri ($url.url) -OutFile $ChromiumZip
 Expand-Archive -Path $ChromiumZip -DestinationPath $Path
 
-# Copy main directrory and clear temp
+# Copy main directrory
 if (($TestSelenium -like "True") -and ($TestChrome -like "True")) {
     Copy-Item $WebDriver $path
     Copy-Item $ChromeDriver $path

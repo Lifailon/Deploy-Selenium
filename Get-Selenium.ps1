@@ -8,4 +8,4 @@ $chromeOptions.BinaryLocation = $Chromium
 $chromeOptions.AddArgument("start-maximized")
 $chromeDriver = New-Object OpenQA.Selenium.Chrome.ChromeDriver($chromeDriverPath, $chromeOptions)
 $chromeDriver.Navigate().GoToUrl("https://www.google.com")
-#$chromeDriver.Quit()
+$chromeDriver.Quit()
