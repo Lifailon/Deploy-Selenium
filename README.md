@@ -2,7 +2,7 @@
 
 Deploy drivers selenium and chrome via PowerShell.
 
-🚀 Quickly install latest version of chrome driver and chromium corresponding version.
+🚀 Quickly install or update to latest version of chrome driver and chromium corresponding version.
 
 ![Image alt](https://github.com/Lifailon/Deploy-Selenium/blob/rsa/Example.gif)
 
