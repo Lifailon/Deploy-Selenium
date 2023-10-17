@@ -1,4 +1,4 @@
-$path = "C:\Users\Lifailon\Documents\Selenium"
+$path = "$home\Documents\Selenium\"
 $ChromeDriverPath = "$path\chromedriver.exe"
 $WebDriver = "$path\WebDriver.dll"
 $Chromium = (Get-ChildItem $path -Recurse | Where-Object Name -like chrome.exe).FullName
