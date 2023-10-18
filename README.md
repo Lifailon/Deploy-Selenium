@@ -2,26 +2,46 @@
 
 Deploy drivers selenium and chrome via PowerShell.
 
-🚀 Quickly install or update to latest version of chrome driver and chromium corresponding version.
+🚀 Quick install or update to latest version of chrome drivers and chromium corresponding version.
 
 ![Image alt](https://github.com/Lifailon/Deploy-Selenium/blob/rsa/Example.gif)
 
-Example of connecting a set of drivers for your script PowerShell:
+### 📚 File composition:
+
+```PowerShell
+PS C:\Users\lifailon\Documents\Selenium> (pwd).Path
+C:\Users\lifailon\Documents\Selenium
+PS C:\Users\lifailon\Documents\Selenium> ls
+
+Directory: C:\Users\lifailon\Documents\Selenium
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d----          18.10.2023    12:39                chrome-win32
+-a---          26.05.2023    18:39       12273664 chromedriver.exe
+-a---          15.10.2023    16:47        4276224 WebDriver.dll
+-a---          15.10.2023    16:47          33792 WebDriver.Support.dll
+```
+
+### Connection example
+
+Example of connecting a set of drivers for your PowerShell scripts:
 
 ```PowerShell
 $path = "$home\Documents\Selenium\"
-$ChromeDriverPath = "$path\chromedriver.exe"
+$ChromeDriver = "$path\ChromeDriver.exe"
 $WebDriver = "$path\WebDriver.dll"
 $Chromium = (Get-ChildItem $path -Recurse | Where-Object Name -like chrome.exe).FullName
 Add-Type -Path $WebDriver
-$chromeOptions = New-Object OpenQA.Selenium.Chrome.ChromeOptions
-$chromeOptions.BinaryLocation = $Chromium
-$chromeOptions.AddArgument("start-maximized")
-$chromeDriver = New-Object OpenQA.Selenium.Chrome.ChromeDriver($chromeDriverPath, $chromeOptions)
-$chromeDriver.Navigate().GoToUrl("https://www.google.com")
-$chromeDriver.Quit()
+$ChromeOptions = New-Object OpenQA.Selenium.Chrome.ChromeOptions
+$ChromeOptions.BinaryLocation = $Chromium
+$ChromeOptions.AddArgument("start-maximized")
+$ChromeOptions.AcceptInsecureCertificates = $True
+$Selenium = New-Object OpenQA.Selenium.Chrome.ChromeDriver($ChromeDriver, $ChromeOptions)
+$Selenium.Navigate().GoToUrl("https://google.com")
 ```
-Example of working with selenium via PowerShell:
+
+**Example of working with selenium via PowerShell:**
 
 ```PowerShell
 $path = "$home\Documents\Selenium\"
