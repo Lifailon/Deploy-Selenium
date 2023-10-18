@@ -89,7 +89,6 @@ Starting ChromeDriver 120.0.6073.0 (b9a0baaa9d39b6608d67b343c78d06f7989ce7ac-ref
 Only local connections are allowed.
 Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
 ChromeDriver was started successfully.
-
 DevTools listening on ws://127.0.0.1:57051/devtools/browser/44c9b891-681b-4b8f-9317-affb3af5586d
 Result: 55
 ```
