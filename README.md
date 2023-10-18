@@ -64,12 +64,16 @@ Start-Sleep 1
 $div = $Selenium.FindElements([OpenQA.Selenium.By]::TagName("div"))
 $2 = $div | Where-Object ComputedAccessibleLabel -like "2"
 $2.Click()
+$2.Click()
 $plus = $Selenium.FindElement([OpenQA.Selenium.By]::CssSelector('[jsname="XSr6wc"]'))
 $plus.Click()
 $3 = $Selenium.FindElement([OpenQA.Selenium.By]::CssSelector('[jsname="KN1kY"]'))
 $3.Click()
+$3.Click()
 $sum = $Selenium.FindElement([OpenQA.Selenium.By]::CssSelector('[jsname="Pt8tGc"]'))
 $sum.Click()
+$result = $Selenium.FindElement([OpenQA.Selenium.By]::CssSelector('[jsname="VssY5c"]')).Text
+Write-Host "Result: $result"
 
 #$Selenium.Close()
 #$Selenium.Quit()
