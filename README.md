@@ -29,25 +29,9 @@ d----          18.10.2023    12:39                chrome-win32
 -a---          15.10.2023    16:47          33792 WebDriver.Support.dll
 ```
 
-### Connection example
+### 📑 Example connection and work
 
-Example of connecting a set of drivers for your PowerShell scripts:
-
-```PowerShell
-$path = "$home\Documents\Selenium\"
-$ChromeDriver = "$path\ChromeDriver.exe"
-$WebDriver = "$path\WebDriver.dll"
-$Chromium = (Get-ChildItem $path -Recurse | Where-Object Name -like chrome.exe).FullName
-Add-Type -Path $WebDriver
-$ChromeOptions = New-Object OpenQA.Selenium.Chrome.ChromeOptions
-$ChromeOptions.BinaryLocation = $Chromium
-$ChromeOptions.AddArgument("start-maximized")
-$ChromeOptions.AcceptInsecureCertificates = $True
-$Selenium = New-Object OpenQA.Selenium.Chrome.ChromeDriver($ChromeDriver, $ChromeOptions)
-$Selenium.Navigate().GoToUrl("https://google.com")
-```
-
-### Example of working with selenium via PowerShell:
+Example of connecting a set of drivers and working with selenium via PowerShell:
 
 ```PowerShell
 $path = "$home\Documents\Selenium\"
