@@ -2,7 +2,7 @@
 
 Deploy drivers selenium and chrome via PowerShell.
 
-🚀 To quickly install all drivers and chromium of the appropriate version, use the following command in your terminal:
+🚀 To quickly install or update all drivers and chromium of the appropriate version, use the following command in your terminal:
 
 ```PowerShell
 Invoke-Expression(New-Object Net.WebClient).DownloadString("https://raw.githubusercontent.com/Lifailon/Deploy-Selenium/rsa/Deploy-Selenium-Drivers.ps1")
