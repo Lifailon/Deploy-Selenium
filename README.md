@@ -8,6 +8,8 @@ Deploy drivers selenium and chrome via PowerShell.
 Invoke-Expression(New-Object Net.WebClient).DownloadString("https://raw.githubusercontent.com/Lifailon/Deploy-Selenium/rsa/Deploy-Selenium-Drivers.ps1")
 ```
 
+### 🎉 Example:
+
 ![Image alt](https://github.com/Lifailon/Deploy-Selenium/blob/rsa/Example.gif)
 
 ### 📚 File composition:
