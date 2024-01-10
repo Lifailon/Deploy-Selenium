@@ -14,7 +14,7 @@ Invoke-Expression(New-Object Net.WebClient).DownloadString("https://raw.githubus
 
 ### 🎉 Example:
 
-![Image alt](https://github.com/Lifailon/Deploy-Selenium/blob/rsa/Images/Example.gif)
+![Image alt](https://github.com/Lifailon/Deploy-Selenium/blob/rsa/Images/example.gif)
 
 ### 📚 File composition:
 
