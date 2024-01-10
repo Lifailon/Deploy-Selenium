@@ -1,4 +1,4 @@
-# Deploy Selenium ✅ via ▶️ PowerShell
+## Deploy Selenium ✅ via ▶️ PowerShell
 
 ![Image alt](https://github.com/Lifailon/Deploy-Selenium/blob/rsa/Images/logo.jpg)
 
