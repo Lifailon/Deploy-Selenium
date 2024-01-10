@@ -1,8 +1,8 @@
-# Deploy-Selenium
+# Deploy Selenium ✅ via ▶️ PowerShell
 
 ![Image alt](https://github.com/Lifailon/Deploy-Selenium/blob/rsa/Images/logo.jpg)
 
-Automated deployment and updating of all dependencies (Chromium browser, Selenium and Chrome drivers) to be able to work with Selenium library ✅ using ☑️ PowerShell language.
+Automated deployment and updating of all dependencies (Chromium browser, Selenium and Chrome drivers) to be able to work with Selenium library using PowerShell language.
 
 Modules with working examples can be found here ➡️ [Selenium-Modules](https://github.com/Lifailon/Selenium-Modules)
 
@@ -14,7 +14,7 @@ Invoke-Expression(New-Object Net.WebClient).DownloadString("https://raw.githubus
 
 ### 🎉 Example:
 
-![Image alt](https://github.com/Lifailon/Deploy-Selenium/blob/rsa/Images/example.gif)
+![Image alt](https://github.com/Lifailon/Deploy-Selenium/blob/rsa/Images/Example.gif)
 
 ### 📚 File composition:
 
