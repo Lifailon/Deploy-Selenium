@@ -10,6 +10,8 @@ try {
     $ChromeOptions = New-Object OpenQA.Selenium.Chrome.ChromeOptions # создаем объект с настройками запуска браузера
     $ChromeOptions.BinaryLocation = $Chromium # передаем путь до исполняемого файла, который отвечает за запуск браузера
     $ChromeOptions.AddArgument("start-maximized") # добавляем аргумент, который позволяет запустить браузер на весь экран
+    #$ChromeOptions.AddArgument("start-minimized") # запускаем браузер в окне
+    #$ChromeOptions.AddArgument("window-size=400,800") # запускаем браузер с заданными размерам окна в пикселях
     $ChromeOptions.AcceptInsecureCertificates = $True # игнорировать предупреждение на сайтах с не валидным сертификатом
     #$ChromeOptions.AddArgument("headless") # скрывать окно браузера при запуске
     $ChromeDriverService = [OpenQA.Selenium.Chrome.ChromeDriverService]::CreateDefaultService($ChromeDriver) # создаем объект настроек службы драйвера
@@ -19,7 +21,9 @@ try {
     #$ChromeDriverService.EnableVerboseLogging = $True # кроме INFO и ошибок, записывать DEBUG сообщения
     $Selenium = New-Object OpenQA.Selenium.Chrome.ChromeDriver($ChromeDriverService, $ChromeOptions) # инициализируем запуск с указанными настройками
 
-    $Selenium.Navigate().GoToUrl("https://google.com")
+    $Selenium.Navigate().GoToUrl("https://google.com") # переходим по указанной ссылке в браузере
+    #$Selenium.Manage().Window.Minimize() # свернуть окно браузера после запуска и перехода по нужному url (что бы считать страницу корректно)
+    # Ищем поле для ввода текста:
     $Search = $Selenium.FindElements([OpenQA.Selenium.By]::Id('APjFqb'))
     $Search = $Selenium.FindElements([OpenQA.Selenium.By]::XPath('//*[@id="APjFqb"]'))
     $Search = $Selenium.FindElements([OpenQA.Selenium.By]::Name('q'))
@@ -27,8 +31,8 @@ try {
     $Search = $Selenium.FindElements([OpenQA.Selenium.By]::ClassName('gLFyf'))
     $Search = $Selenium.FindElements([OpenQA.Selenium.By]::CssSelector('[jsname="yZiJbe"]'))
     $Search = $Selenium.FindElements([OpenQA.Selenium.By]::TagName('textarea')) | Where-Object ComputedAccessibleRole -eq combobox
-    $Search.SendKeys("calculator online")
-    $Search.SendKeys([OpenQA.Selenium.Keys]::Enter)
+    $Search.SendKeys("calculator online") # передаем текст выбранному элементу
+    $Search.SendKeys([OpenQA.Selenium.Keys]::Enter) # нажимаем Enter для вызова функции поиска
 
     Start-Sleep 1
     $div = $Selenium.FindElements([OpenQA.Selenium.By]::TagName("div"))
